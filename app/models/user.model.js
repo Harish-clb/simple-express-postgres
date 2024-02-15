@@ -11,23 +11,21 @@ module.exports = (sequelize, { DataTypes }) => {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           notNull: {
             msg: "Username cannot be null",
           },
-          min: {
-            args: [3],
-            msg: "Username must be at least 3 characters in length",
-          },
-          max: {
-            args: [20],
-            msg: "Username cannot be longer than 20 characters",
-          },
+          len: {
+            args: [3, 20],
+            msg: "Username should be between 3 and 20 characters long",
+          }
         },
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           notNull: {
             msg: "Email cannot be null",

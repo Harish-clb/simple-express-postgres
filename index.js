@@ -7,6 +7,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+require("./app/routes")(app);
+
 // health check
 app.get("/health", (req, res) => {
   res.status(200).send({
