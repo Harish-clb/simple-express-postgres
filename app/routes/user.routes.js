@@ -1,5 +1,22 @@
 /**
  * @openapi
+ * definitions:
+ *   AddUpdateUser:
+ *     type: object
+ *     required:
+ *       - username
+ *       - email
+ *     properties:
+ *       username:
+ *         type: string
+ *         minLength: 3
+ *         maxLength: 20
+ *       email:
+ *         type: string
+ *         format: email
+ */
+/**
+ * @openapi
  * components:
  *   schemas:
  *     User:
@@ -134,17 +151,7 @@ router.get("/:id", controller.getUserById);
  *          application/json:
  *            schema:
  *              type: object
- *              required:
- *                - username
- *                - email
- *              properties:
- *                username:
- *                  type: string
- *                  minLength: 3
- *                  maxLength: 20
- *                email:
- *                  type: string
- *                  format: email
+ *              $ref: '#/definitions/AddUpdateUser'
  *      responses:
  *        201:
  *          description: User created successfully
@@ -192,17 +199,7 @@ router.post("/", controller.createUser);
  *          application/json:
  *            schema:
  *              type: object
- *              required:
- *                - username
- *                - email
- *              properties:
- *                username:
- *                  type: string
- *                  minLength: 3
- *                  maxLength: 20
- *                email:
- *                  type: string
- *                  format: email
+ *              $ref: '#/definitions/AddUpdateUser'
  *      responses:
  *        200:
  *          description: User updated successfully
