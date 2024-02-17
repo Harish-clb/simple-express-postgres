@@ -53,6 +53,8 @@
 
 const router = require("express").Router();
 
+const { isValidId } = require("../middlewares/request.middleware");
+
 const controller = require("../controllers/user.controller");
 
 /**
@@ -86,8 +88,6 @@ const controller = require("../controllers/user.controller");
  *                      format: date-time
  *        500:
  *          description: Internal server error
- *        400:
- *          description: Bad request
  */
 // Get all users
 router.get("/", controller.getAllUsers);
@@ -134,7 +134,7 @@ router.get("/", controller.getAllUsers);
  *          description: Bad request
  */
 // Get user by id
-router.get("/:id", controller.getUserById);
+router.get("/:id", [isValidId], controller.getUserById);
 
 /**
  *  @openapi
@@ -223,7 +223,7 @@ router.post("/", controller.createUser);
  *                    type: object
  */
 // Update user by id
-router.put("/:id", controller.updateUser);
+router.put("/:id", [isValidId], controller.updateUser);
 
 /**
  * @openapi
@@ -248,6 +248,6 @@ router.put("/:id", controller.updateUser);
  *         description: Bad request
  */
 // Delete user by id
-router.delete("/:id", controller.deleteUser);
+router.delete("/:id", [isValidId], controller.deleteUser);
 
 module.exports = router;

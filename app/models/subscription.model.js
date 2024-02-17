@@ -37,7 +37,7 @@ module.exports = (sequelize, { DataTypes }) => {
         },
       },
       startDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         field: "start_date",
         validate: {
@@ -54,7 +54,7 @@ module.exports = (sequelize, { DataTypes }) => {
         },
       },
       endDate: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         field: "end_date",
         validate: {
