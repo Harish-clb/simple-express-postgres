@@ -43,12 +43,38 @@
  *           type: string
  *           format: date-time
  *           description: The date and time the user was updated
+ *         subscriptions:
+ *           type: array
+ *           description: The list of subscriptions for the user
+ *           optional: true
+ *           items:
+ *             type: object
+ *             properties:
+ *               platform:
+ *                 type: string
+ *               subscriptionType:
+ *                 type: string
+ *               startDate:
+ *                 type: string
+ *                 format: date
+ *               endDate:
+ *                 type: string
+ *                 format: date
  *       example:
  *         id: 1
  *         username: Mark
  *         email: mark@mail.com
  *         createdAt: 2021-01-01T00:00:00.000Z
  *         updatedAt: 2021-01-01T00:00:00.000Z
+ *         subscriptions:
+ *           - platform: Netflix
+ *             subscriptionType: Basic
+ *             startDate: 2021-01-01
+ *             endDate: 2021-01-31
+ *           - platform: Amazon Prime
+ *             subscriptionType: Standard
+ *             startDate: 2021-01-01
+ *             endDate: 2021-01-31
  */
 
 const router = require("express").Router();
@@ -64,6 +90,11 @@ const controller = require("../controllers/user.controller");
  *      summary: Get all users
  *      operationId: GetAllUsers
  *      tags: [ Users ]
+ *      parameters:
+ *        - name: subscriptions
+ *          in: query
+ *          schema:
+ *            type: boolean
  *      responses:
  *        200:
  *          description: A list of users.
@@ -106,6 +137,10 @@ router.get("/", controller.getAllUsers);
  *          schema:
  *            type: integer
  *            format: int32
+ *        - name: subscriptions
+ *          in: query
+ *          schema:
+ *            type: boolean
  *      responses:
  *        200:
  *          description: A user object.
