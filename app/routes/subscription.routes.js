@@ -12,7 +12,7 @@
  *       platform:
  *         type: enum
  *         enum: [Netflix, Amazon Prime, Disney+]
- *       type:
+ *       subscriptionType:
  *         type: enum
  *         enum: [Basic, Standard, Premium]
  *         default: Basic
@@ -45,7 +45,7 @@
  *           type: enum
  *           description: Subscription platform
  *           enum: [Netflix, Amazon Prime, Disney+]
- *         type:
+ *         subscriptionType:
  *           type: enum
  *           description: Subscription type
  *           enum: [Basic, Standard, Premium]
@@ -97,7 +97,7 @@ const controller = require("../controllers/subscription.controller");
  *                  properties:
  *                    platform:
  *                      type: string
- *                    type:
+ *                    subscriptionType:
  *                      type: string
  *                    count:
  *                      type: integer

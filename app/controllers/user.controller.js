@@ -1,18 +1,31 @@
 const db = require("../models");
 const User = db.user;
 
-const excludeAttributes = ["createdAt", "updatedAt"];
+const excludeUserAttributes = ["createdAt", "updatedAt"];
+const excludeSubscriptionAttributes = [
+  "createdAt",
+  "updatedAt",
+  "id",
+  "createdAt",
+  "updatedAt",
+  "userId",
+];
 
 // A helper method for GET requests to check if subscriptions should be sent in the response based on the query parameter
 const getUserQuery = (req) => {
   if ((req.query.subscriptions ?? "").toLowerCase() === "true") {
     return {
-      include: "subscriptions",
-      attributes: { exclude: excludeAttributes },
+      include: [
+        {
+          model: db.subscription,
+          as: "subscriptions",
+          attributes: { exclude: excludeSubscriptionAttributes },
+        },
+      ],
     };
   }
   return {
-    attributes: { exclude: excludeAttributes },
+    attributes: { exclude: excludeUserAttributes },
   };
 };
 
